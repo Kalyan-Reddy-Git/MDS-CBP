@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgriSmart | Crop Recommendation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">🌱 AgriSmart</a>
+  <nav><a href="/">Crop Recommendation</a><a href="/about">About</a></nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">SMART FARMING • MACHINE LEARNING PROJECT</div>
+    <h1>Make a smarter<br><span>crop choice.</span></h1>
+    <p>Enter soil nutrients and local climate values to see a demonstration crop recommendation.</p>
+  </section>
+  <section class="panel">
+    <h2>Farm conditions</h2>
+    <p class="muted">Use soil-test values where available. All fields are required.</p>
+    <form method="post">
+      <div class="grid">
+        <label>Nitrogen (N)<input name="nitrogen" type="number" step="any" required placeholder="e.g. 80"></label>
+        <label>Phosphorus (P)<input name="phosphorus" type="number" step="any" required placeholder="e.g. 40"></label>
+        <label>Potassium (K)<input name="potassium" type="number" step="any" required placeholder="e.g. 40"></label>
+        <label>Temperature (°C)<input name="temperature" type="number" step="any" required placeholder="e.g. 27"></label>
+        <label>Humidity (%)<input name="humidity" type="number" step="any" required placeholder="e.g. 70"></label>
+        <label>Soil pH<input name="ph" type="number" step="any" min="0" max="14" required placeholder="e.g. 6.5"></label>
+        <label class="wide">Rainfall (mm)<input name="rainfall" type="number" step="any" min="0" required placeholder="e.g. 120"></label>
+      </div>
+      <button type="submit">Recommend a crop <span>→</span></button>
+    </form>
+    {% if result %}
+      <div class="result"><div class="result-icon">🌾</div><div><div class="muted">DEMO RECOMMENDATION</div><h3>{{ result }}</h3><p>This result comes from illustrative rules, not a validated predictive model.</p></div></div>
+    {% endif %}
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  </section>
+  <p class="disclaimer">Educational prototype only. Recommendations are illustrative and should not replace local agricultural extension advice or a soil-test-based decision.</p>
+</main>
+<footer>AgriSmart • Student Research Prototype</footer>
+</body>
+</html>
